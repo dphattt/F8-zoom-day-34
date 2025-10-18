@@ -18,6 +18,33 @@ function TodoForm({ inputValue, handleSubmit, handleInputChange }) {
   );
 }
 
+function RenderNewTask({ task, handleCheck, handleDelete }) {
+  return (
+    <li className="new-task">
+      <input
+        id={task.id}
+        type="checkbox"
+        checked={task.completed}
+        onChange={handleCheck}
+      />
+      <label htmlFor={task.id} className="task-label">
+        {task.text}
+      </label>
+      <button className="btn-delete" onClick={handleDelete}>
+        Delete
+      </button>
+    </li>
+  );
+}
+
+function EmptyTask() {
+  return (
+    <div className="empty-task">
+      "There are currently no tasks. Create a new one."
+    </div>
+  );
+}
+
 let uniqId = 0;
 
 function TodoApp() {
@@ -37,7 +64,31 @@ function TodoApp() {
       setInputValue("");
     }
   };
+  const handleCheck = (e, id) => {
+    const completed = e.target.checked;
+    setTodos(
+      todos.map((task) => {
+        return task.id === id ? { ...task, completed: completed } : task;
+      })
+    );
+  };
 
+  const handleDelete = (id) => {
+    const isConfirm = window.confirm("Do you really want to delete this task?");
+    if (isConfirm) {
+      setTodos(todos.filter((task) => task.id !== id));
+    }
+  };
+
+  const handleCompleteCount = () => {
+    return todos.filter((task) => task.completed).length;
+  };
+  const handleRemainingCount = () => {
+    return todos.filter((task) => !task.completed).length;
+  };
+  const handleTotalCount = () => {
+    return todos.length;
+  };
   return (
     <div className="todo">
       <h1> Todo List</h1>
@@ -46,13 +97,27 @@ function TodoApp() {
         handleSubmit={handleSubmit}
         handleInputChange={handleInputChange}
       />
-      <div className="empty-task">
-        There is no task here, plz create a new task
-      </div>
+
+      {todos.length === 0 ? <EmptyTask /> : ""}
+
+      <ul className="tasks-wrapper">
+        {todos.map((task) => (
+          <RenderNewTask
+            key={task.id}
+            task={task}
+            handleCheck={(e) => handleCheck(e, task.id)}
+            handleDelete={() => handleDelete(task.id)}
+          />
+        ))}
+      </ul>
       <ul className="status">
-        <li className="status-total">Total:</li>
-        <li className="status-complete">Complete:</li>
-        <li className="status-remaining">Remaining:</li>
+        <li className="status-total">Total: {handleTotalCount()} tasks</li>
+        <li className="status-complete">
+          Complete: {handleCompleteCount()} tasks
+        </li>
+        <li className="status-remaining">
+          Remaining: {handleRemainingCount()} tasks
+        </li>
       </ul>
     </div>
   );

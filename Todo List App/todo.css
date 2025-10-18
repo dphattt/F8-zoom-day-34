@@ -50,10 +50,69 @@ body {
   border: 1px dashed #ccc;
   border-radius: 10px;
   text-align: center;
+  color: #757575;
+}
+
+/* Custom render task */
+.new-task {
+  list-style: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 15px 0px;
+  padding: 15px;
+  border: 1px dashed #ccc;
+  border-radius: 15px;
+  gap: 6px;
+}
+.new-task > input {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+.new-task > input:checked + .task-label {
+  text-decoration: line-through;
+  color: #959595b2;
+}
+.new-task > label {
+  flex-grow: 1;
+}
+.new-task > .btn-delete {
+  padding: 6px;
+  background: #fdb8b886;
+  color: rgb(253, 44, 44);
+  font-weight: bold;
+  font-size: 0.8rem;
+  cursor: pointer;
+  border: 1px solid #fdb8b886;
+  border-radius: 6px;
 }
 
 .status {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-weight: 500;
+}
+
+.status-total {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  color: #757575;
+  background-color: #f0f0f04b;
+}
+.status-complete {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f0f0f04b;
+  color: #4db966;
+}
+.status-remaining {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f0f0f04b;
+  color: #e63434;
 }
