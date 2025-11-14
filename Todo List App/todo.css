@@ -1,0 +1,118 @@
+body {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.todo {
+  width: clamp(576px, 50vw, 700px);
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.2);
+}
+
+.todo h1 {
+  margin: 10px 0;
+  font-size: 1.6rem;
+}
+
+.todo-form {
+  display: flex;
+  gap: 10px;
+}
+.todo-form .todo-input {
+  flex-grow: 1;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  outline: none;
+  font-size: 1rem;
+}
+
+.todo-form .btn-add {
+  padding: 5px 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-weight: bold;
+  color: white;
+  background-color: rgb(14, 98, 217);
+}
+
+.empty-task {
+  margin: 15px 0px;
+  padding: 20px;
+  border: 1px dashed #ccc;
+  border-radius: 10px;
+  text-align: center;
+  color: #757575;
+}
+
+/* Custom render task */
+.new-task {
+  list-style: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 15px 0px;
+  padding: 15px;
+  border: 1px dashed #ccc;
+  border-radius: 15px;
+  gap: 6px;
+}
+.new-task > input {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+.new-task > input:checked + .task-label {
+  text-decoration: line-through;
+  color: #959595b2;
+}
+.new-task > label {
+  flex-grow: 1;
+}
+.new-task > .btn-delete {
+  padding: 6px;
+  background: #fdb8b886;
+  color: rgb(253, 44, 44);
+  font-weight: bold;
+  font-size: 0.8rem;
+  cursor: pointer;
+  border: 1px solid #fdb8b886;
+  border-radius: 6px;
+}
+
+.status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+}
+
+.status-total {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  color: #757575;
+  background-color: #f0f0f04b;
+}
+.status-complete {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f0f0f04b;
+  color: #4db966;
+}
+.status-remaining {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f0f0f04b;
+  color: #e63434;
+}
